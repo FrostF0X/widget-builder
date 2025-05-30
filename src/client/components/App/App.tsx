@@ -6,7 +6,6 @@ import {
     H1,
 } from '@bigcommerce/big-design';
 
-import { host, port } from '../../../config';
 import { createElementFromHTML, executeWidgetScripts } from '../../utils/widget';
 import { SocketData } from '../../../types';
 
@@ -16,7 +15,7 @@ export class App extends Component {
     socket?: Socket;
 
     componentDidMount() {
-        this.socket = io(`${host}:${port}`);
+        this.socket = io(window.location.href);
 
         this.socket.on('connect', () => console.log('Socket connected')); // eslint-disable-line no-console
         this.socket.on('event', (data: SocketData) => {
